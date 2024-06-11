@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\DTO\PostDTO;
 use App\Http\Requests\CreatePostRequest;
 use App\Repository\Interface\IPostRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
@@ -15,41 +14,32 @@ class PostsController extends Controller
     {   
         $this->post = $PostRepository;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
+    // Display a listing of the resource.
     public function index()
     {
-        // $categories = $this->post->getAllCategories();
         $posts = $this->post->getAllPosts();
         return view('dashboard.post.index', [ 'posts' => $posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Show the form for creating a new resource.
     public function create()
     {
         $categories = $this->post->getAllCategories();
         $users = $this->post->getAllUsers();
         return view('dashboard.post.create', ['categories' => $categories, 'users' => $users]);
-
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store a newly created resource in storage.
     public function store(CreatePostRequest $createPostRequest)
     {
-        // dd(Auth::id());
-        $image = $createPostRequest->file('image');
-        $imageName = time().$image->getClientOriginalName();
-        $image->move('assets/images/posts/', $imageName);
+        $image = $createPostRequest->image;
+        $imageNewName = time().$image->getClientOriginalName();
+        $image->move('assets/images/posts/', $imageNewName);
         $post = PostDTO::from([
-
             'title' => $createPostRequest->title,
             'description' => $createPostRequest->description,
-            'image' => '/assets/images/posts/'.$imageName,
+            'image' => '/assets/images/posts/'.$imageNewName,
             'category_id' => $createPostRequest->category_id,
             'user_id' => Auth::id(),
         ]);
@@ -57,17 +47,7 @@ class PostsController extends Controller
         return redirect()->route('post.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Show the form for editing the specified resource.
     public function edit(string $id)
     {
         $postToEdit = $this->post->getById($id);
@@ -75,13 +55,11 @@ class PostsController extends Controller
         return view('dashboard.post.edit', ['post' => $postToEdit, 'categories'=>$categories]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
+    // Update the specified resource in storage.
     public function update(CreatePostRequest $createPostRequest, string $id)
     {
 
-        // dd($createPostRequest->old_image);
         if($createPostRequest->image){
             $image = $createPostRequest->file('image');
             $imageName = time().$image->getClientOriginalName();
@@ -111,9 +89,7 @@ class PostsController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Remove the specified resource from storage.
     public function destroy(string $id)
     {
         if($this->post->delete($id)){

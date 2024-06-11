@@ -4,6 +4,9 @@
     <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
+            <input type="hidden" class="form-control" name="auther_id" value="{{auth()->user()->id}}">
+        </div>
+        <div class="mb-3">
             <label for="name" class="form-label">Post Title:</label>
             <input type="text" class="form-control" id="name" name="title" placeholder="Enter Post Title">
         </div>

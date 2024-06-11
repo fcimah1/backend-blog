@@ -10,17 +10,14 @@ class PostDTO extends Data
     public function __construct(public string $title, public string $description, public string $image, public string $category_id, public string $user_id)
     {
         // $createPostRequest = new CreatePostRequest();
-        // $image_name = $createPostRequest->image->getClientOriginalName();
-        // $new_name = time() . $image_name;
-        // $createPostRequest->image->move('assets/images/posts', $new_name);
-        // $this->image = '/assets/images/posts' . $new_name;
-        // $this->category = $createPostRequest->category;
-        // $this->author_id = Auth::id();
+        // $image = $createPostRequest->image;
+        // $imageNewName = time().$image->getClientOriginalName();
+        // $image->move('assets/images/posts/', $imageNewName);
+        // $this->title = $createPostRequest->title;
+        // $this->description = $createPostRequest->description;
+        // $this->image = '/assets/images/posts/'.$imageNewName;
+        // $this->category_id = $createPostRequest->category_id;
+        // $this->user_id = $createPostRequest->auther_id;
     }
 
-    // public function fromRequest(CreatePostRequest $createPostRequest)
-    // {
-        
-    //     
-    // }
 }
