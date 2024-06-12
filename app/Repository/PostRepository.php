@@ -25,18 +25,18 @@ class PostRepository implements IPostRepository
     {
         return Posts::findOrFail($id);
     }
-    public function create(PostDTO $postDTO):bool
+    public function create(array $postDTO):bool
     {
-        if(Posts::create($postDTO->toArray()))
+        if(Posts::create($postDTO))
         {
             return true;
         }
         return false;
     }
-    public function update(PostDTO $postDTO, $id)
+    public function update(array $postDTO, $id)
     {
         $post = Posts::findOrFail($id);
-        $updatedPost = $post->where('id', $id)->update($postDTO->toArray());
+        $updatedPost = $post->where('id', $id)->update($postDTO);
         if($updatedPost)
         {
             return true;

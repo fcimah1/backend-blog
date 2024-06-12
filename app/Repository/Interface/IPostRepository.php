@@ -9,7 +9,7 @@ use App\DTO\PostDTO;
             public function getAllPosts();
             public function getAllUsers();
             public function getById(int $id):object;
-            public function create(PostDTO $postDTO):bool;
-            public function update(PostDTO $postDTO, $id);                
+            public function create(array $postDTO):bool;
+            public function update(array $postDTO, $id);                
            public function delete($id):bool;
         }

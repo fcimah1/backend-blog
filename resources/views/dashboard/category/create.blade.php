@@ -1,6 +1,7 @@
 @extends('../../../home')
 @section('createcontent')
     <h3>create new category</h3>
+
     <form action="{{route('category.store')}}" method="POST">
         @csrf
         <div class="mb-3">
