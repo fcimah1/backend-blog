@@ -1,4 +1,4 @@
-@extends('../../../home')
+@extends('home')
 @section('createcontent')
     <h3>All Posts </h3>
     <table class="table table-striped">

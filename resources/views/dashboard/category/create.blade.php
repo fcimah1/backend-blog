@@ -1,4 +1,4 @@
-@extends('../../../home')
+@extends('home')
 @section('createcontent')
     <h3>create new category</h3>
 

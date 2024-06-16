@@ -47,7 +47,7 @@ class CreateRepository extends Command
             <<<php
                 <?php
                     namespace App\Repository\Interface;
-                    interface I$name
+                    interface I$name 
                     {
                         //
                     }

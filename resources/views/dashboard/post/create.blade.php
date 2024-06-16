@@ -1,4 +1,4 @@
-@extends('../../../home')
+@extends('home')
 @section('createcontent')
     <h3>create new post</h3>
     <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
